@@ -34,7 +34,7 @@ module.exports = {
             const suggested = new MessageEmbed()
             .setAuthor(message.author.username, message.author.displayAvatarURL())
             .setDescription("**Feature Suggestion:** \n" + args.join(" "))
-            .setColor(client.colors.orange)
+            .setColor('#8130D7')
             .setTimestamp()
             .addField("Status:", "awaiting approval")
             client.channels.cache.get(channel).send({
