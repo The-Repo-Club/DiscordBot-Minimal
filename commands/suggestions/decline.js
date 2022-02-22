@@ -26,7 +26,7 @@ module.exports = {
         if(!args[0]) {
             if(!message.reference) {
                 const noArgs = new MessageEmbed()
-                .setDescription("Please provide a message IDa")
+                .setDescription("Please provide a message ID")
                 .setColor(client.colors.red)
                 .setFooter(message.author.username, message.author.displayAvatarURL())
             
@@ -41,7 +41,7 @@ module.exports = {
             }
             if (!message.reference.messageID) {
                 const noArgs = new MessageEmbed()
-                .setDescription("Please provide a message IDb")
+                .setDescription("Please provide a message ID")
                 .setColor(client.colors.red)
                 .setFooter(message.author.username, message.author.displayAvatarURL())
 
@@ -77,7 +77,7 @@ module.exports = {
                 .setDescription(data.description)
                 .setColor(client.colors.red)
                 .setTimestamp()
-                .addField("Status: ", 'declined')
+                // .addField("Status: ", 'declined')
                 .addField("Reason: ", `${declineMsg || "-"}`)
 
             await suggestedEmbed.delete()

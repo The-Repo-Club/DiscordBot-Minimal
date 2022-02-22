@@ -60,29 +60,30 @@ module.exports = {
             }
         }
 
+
         try {
             const suggestedEmbed = await message.guild.channels.cache.get(channel).messages.fetch(message_id)
     
             const data = suggestedEmbed.embeds[0]
-
+            
             if (args[0] == message_id) {
-                acceptedMsg=args.slice(1).join(" ")                
+                acceptMsg=args.slice(1).join(" ")                
             } else {
-                acceptedMsg=args.slice(0).join(" ") 
-            }   
-    
+                acceptMsg=args.slice(0).join(" ") 
+            }    
+
             const accepted = new MessageEmbed()
-            .setAuthor(data.author.name, data.author.iconURL)
-            .setDescription(data.description)
-            .setColor(client.colors.green)
-            .setTimestamp()
-            .addField("Status: ", 'accepted')
-            .addField("Reason: ", `${acceptedMsg || "-"}`)
-    
+                .setAuthor(data.author.name, data.author.iconURL)
+                .setDescription(data.description)
+                .setColor(client.colors.green)
+                .setTimestamp()
+                // .addField("Status: ", 'accepted')
+                // .addField("Reason: ", `${acceptMsg || "-"}`)
+
             await suggestedEmbed.delete()
             .then(async() => {
                 const success = new MessageEmbed()
-                .setDescription(`Suggestion with the ID \`${args[0]}\` has been __accepted__`)
+                .setDescription(`Suggestion with the ID \`${message_id}\` has been __accepted__`)
                 .setColor(client.colors.green)
                 .setFooter(message.author.username, message.author.displayAvatarURL())
 
@@ -94,7 +95,7 @@ module.exports = {
                 })
             })
             .then(async() => {
-                const channela = db.fetch(`acceptedChannel_${message.guild.id}`)
+                const channeld = db.fetch(`acceptedChannel_${message.guild.id}`)
                 if(channeld === null) {
                     const noChannel = new MessageEmbed()
                     .setDescription(`You must set a accepted channel first: \`;setchannel\``)
@@ -108,10 +109,11 @@ module.exports = {
                         setTimeout(() => message.delete(), 10000)
                     })
                 }
-                return message.guild.channels.cache.get(channela).send({
+                return message.guild.channels.cache.get(channeld).send({
                     embeds: [accepted]
                 })
             })
+
         } catch {
             return util.errorEmbed(client, message, "Please provide a valid message ID", client.colors.red)
         }
