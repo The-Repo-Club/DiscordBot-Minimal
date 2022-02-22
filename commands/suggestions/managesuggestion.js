@@ -107,7 +107,7 @@ module.exports = {
                     .setDescription(data.description)
                     .setColor(client.colors.green)
                     .setTimestamp()
-                    .addField("Status: ", "accepted")
+                    // .addField("Status: ", "accepted")
 
                     await suggestedEmbed.delete();
 
@@ -142,7 +142,7 @@ module.exports = {
                     .setDescription(data.description)
                     .setColor(client.colors.red)
                     .setTimestamp()
-                    .addField("Status:", "declined")
+                    // .addField("Status:", "declined")
 
                     await suggestedEmbed.delete();
 
